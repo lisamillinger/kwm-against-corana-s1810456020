@@ -1,8 +1,6 @@
-<p>
-vaccination-list works!
-</p>
-
-<div class="ui middle aligned selection divided list">
-<a *ngFor="let vaccination of vaccinations" class="item app-vaccination-list-item" [vaccination]="vaccination" [routerLink]="vaccination.key">
-</a>
+<div class="list-group">
+  <a *ngFor="let vaccination of vaccinations"
+    class="list-group-item list-group-item-action flex-column align-items-start app-vaccination-list-item"
+    [vaccination]="vaccination" [routerLink]="vaccination.key">
+  </a>
 </div>
