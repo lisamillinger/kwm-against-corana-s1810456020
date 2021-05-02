@@ -9,9 +9,10 @@ import { VaccinationListItemComponent } from './vaccination-list-item/vaccinatio
 import { VaccinationDetailsComponent } from './vaccination-details/vaccination-details.component';
 import { VaccinationStoreService } from './shared/vaccination-store.service';
 import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing-module';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule ],
   declarations: [ AppComponent, HelloComponent, VaccinationListComponent, VaccinationListItemComponent, VaccinationDetailsComponent, HomeComponent ],
   bootstrap:    [ AppComponent ],
   providers: [VaccinationStoreService]
