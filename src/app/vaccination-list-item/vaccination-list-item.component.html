@@ -1,0 +1,9 @@
+<p>
+vaccination-list-item works!
+</p>
+<div class="header">{{ vaccination.key }}</div>
+<div class="description"> {{ vaccination.information }} </div>
+
+<span *ngFor="let location of vaccination.locations;">
+{{ location.address }}
+</span>
