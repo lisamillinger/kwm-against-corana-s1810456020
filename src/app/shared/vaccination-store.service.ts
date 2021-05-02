@@ -6,7 +6,49 @@ import { catchError, retry } from "rxjs/operators";
 
 @Injectable()
 export class VaccinationStoreService {
-  vaccinations: Vaccination[];
+  private api = "https://corana21.s1810456020.student.kwmhgb.at/api";
+
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<Array<Vaccination>> {
+    return this.http
+      .get(`${this.api}/vaccinations`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getSingle(key: string): Observable<Vaccination> {
+    return this.http
+      .get<Vaccination>(`${this.api}/vaccinations/${key}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  create(vaccination: Vaccination): Observable<any> {
+    return this.http
+      .post(`${this.api}/vaccination`, vaccination)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  update(vaccination: Vaccination): Observable<any> {
+    return this.http
+      .put(`${this.api}/vaccination/${vaccination.key}`, vaccination)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+  remove(key: string): Observable<any> {
+    return this.http
+      .delete(`${this.api}/vaccination/${key}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
+  private errorHandler(error: Error | any): Observable<any> {
+    return throwError(error);
+  }
+
+  /*vaccinations: Vaccination[];
   constructor() {
     this.vaccinations = [
       new Vaccination(
@@ -44,5 +86,5 @@ export class VaccinationStoreService {
 
   getSingle(key: string): Vaccination {
     return this.vaccinations.find(vaccination => vaccination.key === key);
-  }
+  }*/
 }

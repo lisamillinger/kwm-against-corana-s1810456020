@@ -13,7 +13,7 @@ export class VaccinationListComponent implements OnInit {
   constructor(private app: VaccinationStoreService) {}
 
   ngOnInit() {
-    this.vaccinations = this.app.getAll();
+    this.app.getAll().subscribe(res => this.vaccinations = res);
     
   }
 }

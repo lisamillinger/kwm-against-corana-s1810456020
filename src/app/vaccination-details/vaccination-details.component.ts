@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output } from "@angular/core";
 import { Vaccination } from "../shared/vaccination";
 import { VaccinationStoreService } from "../shared/vaccination-store.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { VaccinationFactory } from "../shared/vaccination-factory";
 
 @Component({
   selector: "app-vaccination-details",
@@ -9,15 +10,26 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./vaccination-details.component.css"]
 })
 export class VaccinationDetailsComponent implements OnInit {
-  vaccination: Vaccination;
+  vaccination: Vaccination = VaccinationFactory.empty();
 
   constructor(
     private app: VaccinationStoreService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     const params = this.route.snapshot.params;
-    this.vaccination = this.app.getSingle(params["key"]);
+    this.app.getSingle(params["key"]).subscribe(v => (this.vaccination = v));
+  }
+
+  removeVaccination() {
+    if (confirm("Impfung wirklich löschen?")) {
+      this.app
+        .remove(this.vaccination.key)
+        .subscribe(res =>
+          this.router.navigate(["../"], { relativeTo: this.route })
+        );
+    }
   }
 }
