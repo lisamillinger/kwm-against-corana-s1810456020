@@ -1,15 +1,13 @@
-<p>
-  vaccination-details works!
-</p>
 
-<div class="ui grid" *ngIf="vaccination">
-  <div class="twelve wide column">
-    <h1 class="ui header">{{ vaccination.key }}</h1>
+ <h1 class="ui header">{{ vaccination.key }}</h1>
     <h3 class="ui header">{{ vaccination.information }}</h3>
+<div class="ui grid" *ngIf="vaccination">
+
+  <div class="twelve wide column">
+   
     <div class="ui divider"></div>
     <div class="ui grid">
       <div class="four wide column">
-        <h4 class="ui header">Autoren</h4>
         <span *ngFor="let location of vaccination.locations;">
           {{ location.address }} {{ location.post_code }} {{location.city}}
         </span>
