@@ -10,9 +10,10 @@ import { VaccinationDetailsComponent } from './vaccination-details/vaccination-d
 import { VaccinationStoreService } from './shared/vaccination-store.service';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing-module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, AppRoutingModule ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   declarations: [ AppComponent, HelloComponent, VaccinationListComponent, VaccinationListItemComponent, VaccinationDetailsComponent, HomeComponent ],
   bootstrap:    [ AppComponent ],
   providers: [VaccinationStoreService]
