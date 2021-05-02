@@ -39,4 +39,8 @@ export class VaccinationStoreService {
   getAll() {
     return this.vaccinations;
   }
+
+  getSingle(key : string) : Vaccination {
+    return this.vaccinations.find(vaccination => vaccination.key === key);
+  }
 }

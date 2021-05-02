@@ -3,7 +3,6 @@
 </p>
 
 <div class="ui grid" *ngIf="vaccination">
-
   <div class="twelve wide column">
     <h1 class="ui header">{{ vaccination.key }}</h1>
     <h3 class="ui header">{{ vaccination.information }}</h3>
@@ -13,7 +12,11 @@
         <h4 class="ui header">Autoren</h4>
         <span *ngFor="let location of vaccination.locations;">
           {{ location.address }} {{ location.post_code }} {{location.city}}
-          </span>
+        </span>
       </div>
+    </div>
+    <button [routerLink]="'/vaccinations'" class="ui red button">
+      Zurück zur Impfübersicht
+    </button>
   </div>
 </div>
