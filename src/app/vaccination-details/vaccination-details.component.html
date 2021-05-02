@@ -1,10 +1,9 @@
-
- <h1 class="ui header">{{ vaccination.key }}</h1>
-    <h3 class="ui header">{{ vaccination.information }}</h3>
+<h1 class="ui header">{{ vaccination.key }}</h1>
+<h3 class="ui header">{{ vaccination.information }}</h3>
 <div class="ui grid" *ngIf="vaccination">
 
   <div class="twelve wide column">
-   
+
     <div class="ui divider"></div>
     <div class="ui grid">
       <div class="four wide column">
@@ -13,12 +12,18 @@
         </span>
       </div>
     </div>
-    <button [routerLink]="'/vaccinations'" class="ui red button">
+    <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
       Zurück zur Impfübersicht
     </button>
-    <button class="ui tiny red labeled icon button"
+    <button type="button" class="btn btn-danger"
       (click)="removeVaccination()">
-      <i class="remove icon"></i> Impfung löschen
+      Impfung löschen
 </button>
+    <button type="button" class="btn btn-primary"
+      [routerLink]="['../../admin', vaccination?.key]">
+      Impfung bearbeiten
+</button>
+
+
   </div>
 </div>
