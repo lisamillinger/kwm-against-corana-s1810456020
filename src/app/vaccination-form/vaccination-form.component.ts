@@ -10,18 +10,21 @@ import {
 import { VaccinationFactory } from "../shared/vaccination-factory";
 import { VaccinationStoreService } from "../shared/vaccination-store.service";
 import { Vaccination, Location } from "../shared/vaccination";
+import { VaccinationValidators } from "../shared/vaccination-validators";
+import { VaccinationFormErrorMessages } from "./vaccination-form-error-messages"
 
 @Component({
   selector: "app-vaccination-form",
   templateUrl: "./vaccination-form.component.html",
   styleUrls: ["./vaccination-form.component.css"]
 })
+
 export class VaccinationFormComponent implements OnInit {
   vaccinationForm: FormGroup;
   vaccination = VaccinationFactory.empty();
-  errors: { [key: string]: string } = {};
   isUpdatingVaccination = false;
   locations: FormArray;
+  errors: { [key: string]: string } = {};
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +33,7 @@ export class VaccinationFormComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const key = this.route.snapshot.params["key"];
     if (key) {
       this.isUpdatingVaccination = true;
@@ -39,6 +42,7 @@ export class VaccinationFormComponent implements OnInit {
         this.initVaccination();
       });
     }
+
     this.initVaccination();
   }
 
@@ -46,7 +50,7 @@ export class VaccinationFormComponent implements OnInit {
     this.buildLocationsArray();
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
-      key: [this.vaccination.key, Validators.required],
+      key: [this.vaccination.key, [Validators.required], this.isUpdatingVaccination ? null : VaccinationValidators.keyExists(this.app)],
       date: [this.vaccination.date],
       information: [this.vaccination.information],
       max_participants: [
@@ -64,45 +68,76 @@ export class VaccinationFormComponent implements OnInit {
 
   buildLocationsArray() {
     this.locations = this.fb.array([]);
+
     for (let location of this.vaccination.locations) {
       let fg = this.fb.group({
         post_code: new FormControl(location.post_code),
-        address: new FormControl(location.address),
-        city: new FormControl(location.city)
+        address: new FormControl(location.address, [Validators.required]),
+        city: new FormControl(location.city, [Validators.required])
       });
       this.locations.push(fg);
     }
   }
 
-  updateErrorMessages() {
-    console.log("is invalid? " + this.vaccinationForm.invalid);
-    this.errors = {};
+  addLocationControl() {
+    this.locations.push(this.fb.group({ post_code: null, address: null, city: null }));
   }
 
   submitForm() {
-    this.vaccinationForm.value.locations = this.vaccinationForm.value.locations.filter(location => location.address);
+    this.vaccinationForm.value.locations = this.vaccinationForm.value.locations.filter(
+      thumbnail => thumbnail.url
+    );
 
     const vaccination: Vaccination = VaccinationFactory.fromObject(this.vaccinationForm.value);
 
-    vaccination.locations = this.vaccinationForm.value.locations;
-    //das passt eigentlich
-    console.log(vaccination);
-
-    //copy People
     vaccination.people = this.vaccination.people;
 
     if (this.isUpdatingVaccination) {
-      this.app.update(vaccination).subscribe(res => {
-        this.router.navigate(["../../vaccinations", vaccination.key], {
-          relativeTo: this.route
-        });
-      });
+      this.app.update(vaccination).subscribe(
+        res => {
+          this.router.navigate(["../../vaccinations", vaccination.key], {
+            relativeTo: this.route
+          });
+        },
+        err => {
+          console.log("Fehler ist passiert", err);
+        }
+      );
     } else {
-      this.app.create(vaccination).subscribe(res => {
-        this.vaccination = VaccinationFactory.empty();
-        this.vaccinationForm.reset(VaccinationFactory.empty());
-        this.router.navigate(["../vaccinations"], { relativeTo: this.route });
-      });
+      //vaccination.user_id = 1;
+      //console.log(book);
+      this.app.create(vaccination).subscribe(
+        res => {
+          this.vaccination = VaccinationFactory.empty();
+          this.vaccinationForm.reset(VaccinationFactory.empty());
+          this.router.navigate(["../vaccinations"], {
+            relativeTo: this.route
+          });
+        },
+        err => {
+          console.log("Fehler ist passiert", err);
+        }
+      );
+    }
+  }
+
+  updateErrorMessages() {
+    console.log("form invalid? " + this.vaccinationForm.invalid);
+
+    this.errors = {};
+
+    for (const message of VaccinationFormErrorMessages) {
+      const control = this.vaccinationForm.get(message.forControl);
+
+      if (
+        control &&
+        control.dirty &&
+        control.invalid &&
+        control.errors[message.forValidator] &&
+        !this.errors[message.forControl]
+      ) {
+        this.errors[message.forControl] = message.text;
+      }
     }
   }
 }

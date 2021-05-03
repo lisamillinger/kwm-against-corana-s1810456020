@@ -37,6 +37,7 @@ export class VaccinationStoreService {
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
+
   remove(key: string): Observable<any> {
     return this.http
       .delete(`${this.api}/vaccination/${key}`)
@@ -46,6 +47,12 @@ export class VaccinationStoreService {
 
   private errorHandler(error: Error | any): Observable<any> {
     return throwError(error);
+  }
+
+  check(key: string): Observable<Boolean> {
+    return this.http
+      .get<Boolean>(`${this.api}/vaccinations/checkkey/${key}`)
+      .pipe(catchError(this.errorHandler));
   }
 
   /*vaccinations: Vaccination[];
