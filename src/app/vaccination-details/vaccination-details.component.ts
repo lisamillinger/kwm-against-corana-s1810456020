@@ -32,4 +32,8 @@ export class VaccinationDetailsComponent implements OnInit {
         );
     }
   }
+
+  getmax_participants(num: number) {
+    return new Array(num);
+  }
 }
