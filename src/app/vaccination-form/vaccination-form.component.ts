@@ -43,6 +43,7 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   initVaccination() {
+    this.buildLocationsArray();
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
       key: [this.vaccination.key, Validators.required],
@@ -58,6 +59,19 @@ export class VaccinationFormComponent implements OnInit {
     this.vaccinationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()
     );
+    console.log(this.vaccination.locations);
+  }
+
+  buildLocationsArray() {
+    this.locations = this.fb.array([]);
+    for (let location of this.vaccination.locations) {
+      let fg = this.fb.group({
+        post_code: new FormControl(location.post_code),
+        address: new FormControl(location.address),
+        city: new FormControl(location.city)
+      });
+      this.locations.push(fg);
+    }
   }
 
   updateErrorMessages() {
@@ -66,10 +80,12 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   submitForm() {
-    const vaccination: Vaccination = VaccinationFactory.fromObject(
-      this.vaccinationForm.value
-    );
+    this.vaccinationForm.value.locations = this.vaccinationForm.value.locations.filter(location => location.address);
+
+    const vaccination: Vaccination = VaccinationFactory.fromObject(this.vaccinationForm.value);
+
     vaccination.locations = this.vaccinationForm.value.locations;
+    //das passt eigentlich
     console.log(vaccination);
 
     //copy People

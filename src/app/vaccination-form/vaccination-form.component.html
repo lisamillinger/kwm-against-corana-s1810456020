@@ -35,7 +35,7 @@
   </div>
 
   <div class="form-group">
-    <label>Ort</label>
+    <h3>Ort</h3>
 
     <div formArrayName="locations">
       <div class="fields" *ngFor="let control of locations?.controls; index as
@@ -45,18 +45,18 @@ i; last as l" [formGroupName]="i">
 
         <div class="form-group">
           <label for="address" label class="form-check-label">Adresse</label>
-          <input formControlName="address" class="form-check-input">
+          <input formControlName="address" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="post_code" label class="form-check-label">Postleitzahl</label>
-          <input formControlName="post_code" class="form-check-input">
+          <input formControlName="post_code" class="form-control">
         </div>
 
 
         <div class="form-group">
           <label for="city" label class="form-check-label">Stadt</label>
-          <input formControlName="Stadt" class="form-check-input">
+          <input formControlName="city" class="form-control">
         </div>
 
       </div>
@@ -64,7 +64,6 @@ i; last as l" [formGroupName]="i">
       }} </small>
     </div>
   </div>
-
 
 
   <button type="submit" class="btn btn-info"
