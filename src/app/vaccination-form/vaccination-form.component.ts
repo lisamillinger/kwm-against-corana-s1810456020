@@ -65,5 +65,28 @@ export class VaccinationFormComponent implements OnInit {
     this.errors = {};
   }
 
-  submitForm() {}
+  submitForm() {
+    const vaccination: Vaccination = VaccinationFactory.fromObject(
+      this.vaccinationForm.value
+    );
+    vaccination.locations = this.vaccinationForm.value.locations;
+    console.log(vaccination);
+
+    //copy People
+    vaccination.people = this.vaccination.people;
+
+    if (this.isUpdatingVaccination) {
+      this.app.update(vaccination).subscribe(res => {
+        this.router.navigate(["../../vaccinations", vaccination.key], {
+          relativeTo: this.route
+        });
+      });
+    } else {
+      this.app.create(vaccination).subscribe(res => {
+        this.vaccination = VaccinationFactory.empty();
+        this.vaccinationForm.reset(VaccinationFactory.empty());
+        this.router.navigate(["../vaccinations"], { relativeTo: this.route });
+      });
+    }
+  }
 }
