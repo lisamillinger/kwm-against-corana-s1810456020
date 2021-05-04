@@ -11,14 +11,13 @@ import { VaccinationFactory } from "../shared/vaccination-factory";
 import { VaccinationStoreService } from "../shared/vaccination-store.service";
 import { Vaccination, Location } from "../shared/vaccination";
 import { VaccinationValidators } from "../shared/vaccination-validators";
-import { VaccinationFormErrorMessages } from "./vaccination-form-error-messages"
+import { VaccinationFormErrorMessages } from "./vaccination-form-error-messages";
 
 @Component({
   selector: "app-vaccination-form",
   templateUrl: "./vaccination-form.component.html",
   styleUrls: ["./vaccination-form.component.css"]
 })
-
 export class VaccinationFormComponent implements OnInit {
   vaccinationForm: FormGroup;
   vaccination = VaccinationFactory.empty();
@@ -50,7 +49,13 @@ export class VaccinationFormComponent implements OnInit {
     this.buildLocationsArray();
     this.vaccinationForm = this.fb.group({
       id: this.vaccination.id,
-      key: [this.vaccination.key, [Validators.required], this.isUpdatingVaccination ? null : VaccinationValidators.keyExists(this.app)],
+      key: [
+        this.vaccination.key,
+        [Validators.required],
+        this.isUpdatingVaccination
+          ? null
+          : VaccinationValidators.keyExists(this.app)
+      ],
       date: [this.vaccination.date],
       information: [this.vaccination.information],
       max_participants: [
@@ -80,7 +85,9 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   addLocationControl() {
-    this.locations.push(this.fb.group({ post_code: null, address: null, city: null }));
+    this.locations.push(
+      this.fb.group({ post_code: null, address: null, city: null })
+    );
   }
 
   submitForm() {
@@ -88,12 +95,17 @@ export class VaccinationFormComponent implements OnInit {
       thumbnail => thumbnail.url
     );
 
-    const vaccination: Vaccination = VaccinationFactory.fromObject(this.vaccinationForm.value);
+    const vaccination: Vaccination = VaccinationFactory.fromObject(
+      this.vaccinationForm.value
+    );
+
+    console.log(vaccination);
 
     vaccination.people = this.vaccination.people;
 
     if (this.isUpdatingVaccination) {
-      this.app.update(vaccination).subscribe(
+      console.log(this.vaccination);
+      this.app.update(this.vaccination).subscribe(
         res => {
           this.router.navigate(["../../vaccinations", vaccination.key], {
             relativeTo: this.route
