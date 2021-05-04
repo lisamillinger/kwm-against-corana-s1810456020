@@ -14,11 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { VaccinationFormErrorMessagesComponent } from './vaccination-form-error-messages/vaccination-form-error-messages.component';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './shared/authentication.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule ],
-  declarations: [ AppComponent, HelloComponent, VaccinationListComponent, VaccinationListItemComponent, VaccinationDetailsComponent, HomeComponent, VaccinationFormComponent, VaccinationFormErrorMessagesComponent ],
+  declarations: [ AppComponent, HelloComponent, VaccinationListComponent, VaccinationListItemComponent, VaccinationDetailsComponent, HomeComponent, VaccinationFormComponent, VaccinationFormErrorMessagesComponent, LoginComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [VaccinationStoreService]
+  providers: [VaccinationStoreService, AuthenticationService]
 })
 export class AppModule { }

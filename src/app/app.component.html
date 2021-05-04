@@ -8,6 +8,8 @@
   <li class="nav-item">
     <a routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
   </li>
+  <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">Administration</a>
+  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
 </ul>
 
 <router-outlet></router-outlet>

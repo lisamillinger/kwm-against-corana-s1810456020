@@ -1,5 +1,6 @@
 import { Component, VERSION } from "@angular/core";
 import { Vaccination } from "./shared/vaccination";
+import { AuthenticationService } from "./shared/authentication.service";
 
 @Component({
   selector: "my-app",
@@ -7,5 +8,15 @@ import { Vaccination } from "./shared/vaccination";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  
+  constructor(private authService: AuthenticationService) {}
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+  getLoginLabel() {
+    if (this.isLoggedIn()) {
+      return "Logout";
+    } else {
+      return "Login";
+    }
+  }
 }
