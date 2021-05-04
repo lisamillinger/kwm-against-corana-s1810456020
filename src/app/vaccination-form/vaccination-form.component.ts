@@ -64,12 +64,14 @@ export class VaccinationFormComponent implements OnInit {
       isFull: [this.vaccination.isFull],
       locations: this.locations
     });
+
     this.vaccinationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()
     );
   }
 
   buildLocationsArray() {
+    console.log("ICH BUILDE EINE LCOATION");
     this.locations = this.fb.array([]);
 
     for (let location of this.vaccination.locations) {
@@ -78,6 +80,7 @@ export class VaccinationFormComponent implements OnInit {
         address: new FormControl(location.address, [Validators.required]),
         city: new FormControl(location.city, [Validators.required])
       });
+      console.log(location.post_code);
       this.locations.push(fg);
     }
   }
@@ -97,10 +100,11 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccinationForm.value
     );
 
-    console.log(vaccination);
+    console.log(vaccination.locations);
 
     vaccination.people = this.vaccination.people;
 
+    //BESTEHENDE LOCATION UPDATEN
     if (this.isUpdatingVaccination) {
       console.log(vaccination);
       this.app
@@ -121,6 +125,7 @@ export class VaccinationFormComponent implements OnInit {
           console.log("Fehler ist passiert", err);
         }
       );
+      //NEUE LOCATION ANLEGEN
     } else {
       //vaccination.user_id = 1;
       //console.log(book);
