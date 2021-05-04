@@ -38,6 +38,13 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  updateNeu(vaccination: Vaccination): Observable<any> {
+    return this.http
+      .put(`${this.api}/vaccination/${vaccination.id}`, vaccination)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   remove(key: string): Observable<any> {
     return this.http
       .delete(`${this.api}/vaccination/${key}`)

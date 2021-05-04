@@ -41,7 +41,6 @@ export class VaccinationFormComponent implements OnInit {
         this.initVaccination();
       });
     }
-
     this.initVaccination();
   }
 
@@ -68,7 +67,6 @@ export class VaccinationFormComponent implements OnInit {
     this.vaccinationForm.statusChanges.subscribe(() =>
       this.updateErrorMessages()
     );
-    console.log(this.vaccination.locations);
   }
 
   buildLocationsArray() {
@@ -104,10 +102,18 @@ export class VaccinationFormComponent implements OnInit {
     vaccination.people = this.vaccination.people;
 
     if (this.isUpdatingVaccination) {
-      console.log(this.vaccination);
-      this.app.update(this.vaccination).subscribe(
+      console.log(vaccination);
+      this.app
+        .remove(this.vaccination.key)
+        .subscribe(res =>
+          this.router.navigate(["../vaccinations"], { relativeTo: this.route })
+        );
+
+      this.app.create(vaccination).subscribe(
         res => {
-          this.router.navigate(["../../vaccinations", vaccination.key], {
+          this.vaccination = VaccinationFactory.empty();
+          this.vaccinationForm.reset(VaccinationFactory.empty());
+          this.router.navigate(["../vaccinations"], {
             relativeTo: this.route
           });
         },
