@@ -96,7 +96,6 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   submitForm() {
-   
     const vaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );

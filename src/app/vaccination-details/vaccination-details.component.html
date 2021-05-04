@@ -11,6 +11,11 @@
           {{ location.address }} {{ location.post_code }} {{location.city}}
         </span>
       </div>
+      <div class="four wide column">
+        <span *ngFor="let location of vaccination.locations;">
+         Anmeldungen: {{ vaccination.current_registrations }}
+        </span>
+      </div>
 
     </div>
     <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
