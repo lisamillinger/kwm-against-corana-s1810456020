@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from "@angular/core";
 import { Vaccination } from "../shared/vaccination";
+import { People } from "../shared/people";
 import { VaccinationStoreService } from "../shared/vaccination-store.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { VaccinationFactory } from "../shared/vaccination-factory";
