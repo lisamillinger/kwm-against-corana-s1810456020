@@ -87,22 +87,24 @@ export class VaccinationFormComponent implements OnInit {
 
   addLocationControl() {
     this.locations.push(
-      this.fb.group({ post_code: null, address: null, city: null })
+      this.fb.group({
+        post_code: this.vaccination["post_code"],
+        address: this.vaccination["address"],
+        city: this.vaccination["city"]
+      })
     );
   }
 
   submitForm() {
-    this.vaccinationForm.value.locations = this.vaccinationForm.value.locations.filter(
-      thumbnail => thumbnail.url
-    );
-
+   
     const vaccination: Vaccination = VaccinationFactory.fromObject(
       this.vaccinationForm.value
     );
 
     console.log(vaccination.locations);
 
-    vaccination.people = this.vaccination.people;
+    vaccination.locations = this.vaccinationForm.value.locations;
+    console.log(vaccination);
 
     //BESTEHENDE LOCATION UPDATEN
     if (this.isUpdatingVaccination) {
