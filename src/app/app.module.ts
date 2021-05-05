@@ -10,19 +10,24 @@ import { VaccinationDetailsComponent } from './vaccination-details/vaccination-d
 import { VaccinationStoreService } from './shared/vaccination-store.service';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing-module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VaccinationFormComponent } from './vaccination-form/vaccination-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { VaccinationFormErrorMessagesComponent } from './vaccination-form-error-messages/vaccination-form-error-messages.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './shared/authentication.service';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
+import { JwtInterceptorService } from './shared/jwt-interceptor.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule ],
   declarations: [ AppComponent, HelloComponent, VaccinationListComponent, VaccinationListItemComponent, VaccinationDetailsComponent, HomeComponent, VaccinationFormComponent, VaccinationFormErrorMessagesComponent, LoginComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [VaccinationStoreService, AuthenticationService, TokenInterceptorService ]
+  providers: [VaccinationStoreService, AuthenticationService, TokenInterceptorService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorService,
+    multi: true
+  } ]
 })
 
 //authservice = authentication service??
