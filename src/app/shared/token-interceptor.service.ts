@@ -1,13 +1,15 @@
-import { Injectable } from "@angular/core";
 import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest
 } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class TokenInterceptorService implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
@@ -15,7 +17,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`
       }
     });
     return next.handle(request);
