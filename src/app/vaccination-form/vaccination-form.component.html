@@ -1,6 +1,4 @@
-<p>
-  vaccination-form works!
-</p>
+
 <h1>Formular zum Anlegen von Impfungen </h1>
 <form [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
 
@@ -40,6 +38,7 @@
     <div formArrayName="locations">
       <div class="fields" *ngFor="let control of locations?.controls; index as
 i; last as l" [formGroupName]="i">
+
         <input type="hidden" name="id">
 
 

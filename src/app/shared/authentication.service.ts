@@ -13,8 +13,8 @@ interface Token {
 @Injectable()
 export class AuthenticationService {
   private api: string =
-    "https://bookstore21test.schoenboeck.kwmhgb.at/api/auth";
-  //'http://localhost:8080/api/auth';
+    "https://corana21.s1810456020.student.kwmhgb.at/api/auth";
+
   constructor(private http: HttpClient) {}
   login(email: string, password: string) {
     return this.http.post(`${this.api}/login`, {
@@ -22,9 +22,11 @@ export class AuthenticationService {
       password: password
     });
   }
+
   public getCurrentUserId() {
     return Number.parseInt(localStorage.getItem("userId"));
   }
+
   public setLocalStorage(token: string) {
     console.log("Storing token");
     console.log(jwt_decode(token));
@@ -34,12 +36,14 @@ export class AuthenticationService {
     localStorage.setItem("token", token);
     localStorage.setItem("userId", decodedToken.user.id);
   }
+
   logout() {
     this.http.post(`${this.api}/logout`, {});
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     console.log("logged out");
   }
+
   public isLoggedIn() {
     if (localStorage.getItem("token")) {
       let token: string = localStorage.getItem("token");
@@ -58,6 +62,7 @@ export class AuthenticationService {
       return false;
     }
   }
+  
   isLoggedOut() {
     return !this.isLoggedIn();
   }
