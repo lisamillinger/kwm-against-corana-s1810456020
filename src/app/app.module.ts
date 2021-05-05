@@ -16,11 +16,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { VaccinationFormErrorMessagesComponent } from './vaccination-form-error-messages/vaccination-form-error-messages.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './shared/authentication.service';
+import { TokenInterceptorService } from './shared/token-interceptor.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule ],
   declarations: [ AppComponent, HelloComponent, VaccinationListComponent, VaccinationListItemComponent, VaccinationDetailsComponent, HomeComponent, VaccinationFormComponent, VaccinationFormErrorMessagesComponent, LoginComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [VaccinationStoreService, AuthenticationService]
+  providers: [VaccinationStoreService, AuthenticationService, TokenInterceptorService ]
 })
+
+//authservice = authentication service??
+
 export class AppModule { }

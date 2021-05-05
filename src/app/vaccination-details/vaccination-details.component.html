@@ -21,11 +21,11 @@
     <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
       Zurück zur Impfübersicht
     </button>
-    <button type="button" class="btn btn-danger"
+    <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
       (click)="removeVaccination()">
       Impfung löschen
 </button>
-    <button type="button" class="btn btn-primary"
+    <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-primary"
       [routerLink]="['../../admin', vaccination?.key]">
       Impfung bearbeiten
 </button>

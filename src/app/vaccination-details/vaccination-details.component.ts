@@ -4,6 +4,7 @@ import { People } from "../shared/people";
 import { VaccinationStoreService } from "../shared/vaccination-store.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { VaccinationFactory } from "../shared/vaccination-factory";
+import { AuthenticationService } from "../shared/authentication.service";
 
 @Component({
   selector: "app-vaccination-details",
@@ -16,7 +17,8 @@ export class VaccinationDetailsComponent implements OnInit {
   constructor(
     private app: VaccinationStoreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public authService: AuthenticationService
   ) {}
 
   ngOnInit() {
