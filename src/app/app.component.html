@@ -6,10 +6,10 @@
     <a routerLink="vaccinations" routerLinkActive="active" class="nav-link">Impfungen</a>
   </li>
   <li class="nav-item">
-    <a routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
+    <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
+
   </li>
   <li class="nav-item">
-    <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
     <a routerLink="login" routerLinkActive="active" class="nav-link">{{getLoginLabel()}}</a>
   </li>
 </ul>
