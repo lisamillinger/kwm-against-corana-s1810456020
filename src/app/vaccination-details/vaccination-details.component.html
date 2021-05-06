@@ -12,22 +12,28 @@
         </span>
       </div>
       <div class="four wide column">
-        <span *ngFor="let person of vaccination.people; let i = index">
-         Anmeldungen: {{ vaccination.current_registrations }}
-         <div class="form-group">
-          <label for="isVaccinated" label class="form-check-label">Schon geimpft?</label>
-          <input formControlName="isFull" class="form-check-input" type="checkbox" >
-        </div>
-        </span>
+
+        Anmeldungen: {{ vaccination.current_registrations }}
+
+
       </div>
 
       <div *ngIf="authService.isLoggedIn()">
+        Angemeldete Personen: <br>
         <span *ngFor="let people of vaccination.people;">
-         Angemeldete Personen: <br>
+
          {{ people.firstName }} <br>
          {{ people.lastName}} <br>
-         {{people.isVaccinated}} <br>
+
+         <label>
+                <input type="checkbox" [value]="people.id" (change)="getsVaccinated($event)" />
+                schon geimpft?
+              </label>
+              <br>
+         
           </span>
+
+
       </div>
 
 
