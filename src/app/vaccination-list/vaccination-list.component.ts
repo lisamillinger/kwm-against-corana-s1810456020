@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Vaccination, People, Location } from "../shared/vaccination";
-import {VaccinationStoreService} from '../shared/vaccination-store.service';
+import { VaccinationStoreService } from "../shared/vaccination-store.service";
 
 @Component({
   selector: "app-vaccination-list",
@@ -13,7 +13,6 @@ export class VaccinationListComponent implements OnInit {
   constructor(private app: VaccinationStoreService) {}
 
   ngOnInit() {
-    this.app.getAll().subscribe(res => this.vaccinations = res);
-    
+    this.app.getAll().subscribe(res => (this.vaccinations = res));
   }
 }

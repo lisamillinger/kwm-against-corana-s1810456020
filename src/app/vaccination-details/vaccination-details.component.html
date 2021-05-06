@@ -12,8 +12,10 @@
         </span>
       </div>
       <div class="four wide column">
-        <span *ngFor="let location of vaccination.locations;">
+        <span *ngFor="let person of vaccination.people; let i = index">
          Anmeldungen: {{ vaccination.current_registrations }}
+         {{ i }}
+         
         </span>
       </div>
 
@@ -27,20 +29,20 @@
       </div>
 
 
-    </div>
+  </div>
 
-    <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
+  <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
       Zurück zur Impfübersicht
     </button>
-    <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
+  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
       (click)="removeVaccination()">
       Impfung löschen
 </button>
-    <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-primary"
+  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-primary"
       [routerLink]="['../../admin', vaccination?.key]">
       Impfung bearbeiten
 </button>
 
 
-  </div>
+</div>
 </div>

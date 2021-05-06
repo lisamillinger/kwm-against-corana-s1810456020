@@ -23,6 +23,7 @@ export class VaccinationDetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.vaccination.people);
+    console.log(this.vaccination.people.length);
     const params = this.route.snapshot.params;
     this.app.getSingle(params["key"]).subscribe(v => (this.vaccination = v));
   }
@@ -41,7 +42,7 @@ export class VaccinationDetailsComponent implements OnInit {
     return new Array(num);
   }
 
-  /*getParticipants() {
+  getParticipants() {
     return this.vaccination.people.length;
-  }*/
+  }
 }
