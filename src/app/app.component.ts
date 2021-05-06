@@ -9,14 +9,12 @@ import { AuthenticationService } from "./shared/authentication.service";
 })
 export class AppComponent {
   constructor(private authService: AuthenticationService) {}
+
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
+
   getLoginLabel() {
-    if (this.isLoggedIn()) {
-      return "Logout";
-    } else {
-      return "Login";
-    }
+    return this.isLoggedIn() ? "Logout" : "Login";
   }
 }

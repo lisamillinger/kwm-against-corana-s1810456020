@@ -45,11 +45,9 @@ import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
     TokenInterceptorService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptorService,
+      useClass: TokenInterceptorService,
       multi: true
     }
   ]
 })
-
-//authservice = authentication service??
 export class AppModule {}
