@@ -43,7 +43,10 @@ export class VaccinationDetailsComponent implements OnInit {
   }
 
   getParticipants() {
-    return this.vaccination.people.length;
+    let participants = this.vaccination.people.length;
+    let one = 1;
+    console.log(participants + 1);
+    return participants + 1;
   }
 
   getsVaccinated(e) {
