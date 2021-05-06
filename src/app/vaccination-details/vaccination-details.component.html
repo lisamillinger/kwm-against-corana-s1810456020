@@ -16,8 +16,19 @@
          Anmeldungen: {{ vaccination.current_registrations }}
         </span>
       </div>
+
+      <div *ngIf="authService.isLoggedIn()">
+        <span *ngFor="let people of vaccination.people;">
+         Angemeldete Personen: <br>
+         {{ people.firstName }} <br>
+         {{ people.lastName}} <br>
+         {{people.isVaccinated}} <br>
+          </span>
+      </div>
+
+
     </div>
-    
+
     <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
       Zurück zur Impfübersicht
     </button>

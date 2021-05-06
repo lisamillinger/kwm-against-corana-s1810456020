@@ -22,6 +22,7 @@ export class VaccinationDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.vaccination.people);
     const params = this.route.snapshot.params;
     this.app.getSingle(params["key"]).subscribe(v => (this.vaccination = v));
   }
@@ -39,4 +40,8 @@ export class VaccinationDetailsComponent implements OnInit {
   getmax_participants(num: number) {
     return new Array(num);
   }
+
+  /*getParticipants() {
+    return this.vaccination.people.length;
+  }*/
 }
