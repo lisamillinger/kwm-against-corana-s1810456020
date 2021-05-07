@@ -3,14 +3,31 @@
     <a routerLink="home" routerLinkActive="active" class="nav-link">Home</a>
   </li>
   <li class="nav-item">
-    <a routerLink="vaccinations" routerLinkActive="active" class="nav-link">Impfungen</a>
+    <a routerLink="vaccinations" routerLinkActive="active" class="nav-link"
+      >Impfungen</a>
   </li>
   <li class="nav-item">
-    <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
-
+    <a
+      *ngIf="isLoggedIn()"
+      routerLink="admin"
+      routerLinkActive="active"
+      class="nav-link"
+      >Administration</a
+    >
   </li>
   <li class="nav-item">
-    <a routerLink="login" routerLinkActive="active" class="nav-link">{{getLoginLabel()}}</a>
+    <a
+      *ngIf="isLoggedIn()"
+      routerLink="registrations"
+      routerLinkActive="active"
+      class="nav-link"
+      >Aktuelle Registrierungen</a
+    >
+  </li>
+  <li class="nav-item">
+    <a routerLink="login" routerLinkActive="active" class="nav-link"
+      >{{getLoginLabel()}}</a
+    >
   </li>
 </ul>
 
