@@ -20,6 +20,7 @@ import { TokenInterceptorService } from "./shared/token-interceptor.service";
 import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 import { PeopleListComponent } from './people-list/people-list.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
+import { PeopleListItemComponent } from './people-list-item/people-list-item.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { PeopleDetailsComponent } from './people-details/people-details.componen
     VaccinationFormErrorMessagesComponent,
     LoginComponent,
     PeopleListComponent,
-    PeopleDetailsComponent
+    PeopleDetailsComponent,
+    PeopleListItemComponent
   ],
   bootstrap: [AppComponent],
   providers: [

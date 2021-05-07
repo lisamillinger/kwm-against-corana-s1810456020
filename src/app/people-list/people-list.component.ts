@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PeopleFactory } from '../shared/people-factory';
+import { Vaccination, People, Location } from '../shared/vaccination';
+import { VaccinationStoreService } from '../shared/vaccination-store.service';
 
 @Component({
   selector: 'app-people-list',
@@ -6,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
+  people: People[];
 
-  constructor() { }
+  constructor(
+    private app: VaccinationStoreService
+    ) {}
 
   ngOnInit() {
+    this.app.getAllPeople().subscribe(res => (this.people = res));
+  
   }
-
 }

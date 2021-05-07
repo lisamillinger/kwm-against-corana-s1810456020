@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Vaccination, People, Location } from "./vaccination";
-import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError, retry } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Vaccination, People, Location } from './vaccination';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable()
 export class VaccinationStoreService {
-  private api = "https://corana21.s1810456020.student.kwmhgb.at/api";
+  private api = 'https://corana21.s1810456020.student.kwmhgb.at/api';
 
   constructor(private http: HttpClient) {}
 
@@ -17,12 +17,28 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getAllPeople(): Observable<Array<People>> {
+    return this.http
+      .get(`${this.api}/registrations`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   getSingle(key: string): Observable<Vaccination> {
     return this.http
       .get<Vaccination>(`${this.api}/vaccinations/${key}`)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
+
+
+  getSinglePerson(id: number): Observable<People> {
+    return this.http
+      .get<Vaccination>(`${this.api}/registrations/${id}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
 
   create(vaccination: Vaccination): Observable<any> {
     return this.http
