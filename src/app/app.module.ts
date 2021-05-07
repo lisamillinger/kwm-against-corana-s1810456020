@@ -19,6 +19,7 @@ import { AuthenticationService } from "./shared/authentication.service";
 import { TokenInterceptorService } from "./shared/token-interceptor.service";
 import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 import { PeopleListComponent } from './people-list/people-list.component';
+import { PeopleDetailsComponent } from './people-details/people-details.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { PeopleListComponent } from './people-list/people-list.component';
     VaccinationFormComponent,
     VaccinationFormErrorMessagesComponent,
     LoginComponent,
-    PeopleListComponent
+    PeopleListComponent,
+    PeopleDetailsComponent
   ],
   bootstrap: [AppComponent],
   providers: [
