@@ -9,7 +9,7 @@ export class PeopleFactory {
       "",
       new Date(),
       "",
-      0,
+      "",
       "",
       "",
       "",

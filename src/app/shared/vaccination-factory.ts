@@ -18,7 +18,7 @@ export class VaccinationFactory {
           lastName: "",
           birthday: new Date(),
           gender: "",
-          sv_number: 0,
+          sv_number: "",
           address: "",
           email: "",
           password: "",

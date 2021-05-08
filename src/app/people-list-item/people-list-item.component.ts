@@ -8,12 +8,9 @@ import { VaccinationStoreService } from '../shared/vaccination-store.service';
   styleUrls: ['./people-list-item.component.css']
 })
 export class PeopleListItemComponent implements OnInit {
-
-  @Input() people: Vaccination;
+  @Input() people: People;
 
   constructor() {}
 
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 }

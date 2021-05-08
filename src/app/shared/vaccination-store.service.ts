@@ -24,6 +24,13 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getVaccinationForPerson(): Observable<Vaccination> {
+    return this.http
+      .get(`${this.api}/registrations/{$id}/vaccination`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   getSingle(key: string): Observable<Vaccination> {
     return this.http
       .get<Vaccination>(`${this.api}/vaccinations/${key}`)
@@ -31,10 +38,9 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
-
-  getSinglePerson(id: number): Observable<People> {
+  getSinglePerson(sv_number: string): Observable<People> {
     return this.http
-      .get<Vaccination>(`${this.api}/registrations/${id}`)
+      .get<Vaccination>(`${this.api}/registrations/${sv_number}`)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }

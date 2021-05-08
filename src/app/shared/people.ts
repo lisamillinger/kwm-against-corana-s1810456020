@@ -5,7 +5,7 @@ export class People {
     public lastName: string,
     public birthday: Date,
     public gender: string,
-    public sv_number: number,
+    public sv_number: string,
     public address: string,
     public email: string,
     public password: string,
