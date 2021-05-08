@@ -11,7 +11,7 @@ import { VaccinationStoreService } from '../shared/vaccination-store.service';
 })
 export class PeopleDetailsComponent implements OnInit {
   person: People = PeopleFactory.empty();
-  
+
   constructor(
     private app: VaccinationStoreService,
     private router: Router,
@@ -20,9 +20,11 @@ export class PeopleDetailsComponent implements OnInit {
 
   ngOnInit() {
     const params = this.route.snapshot.params;
-    console.log(params);
-    this.app.getSinglePerson(params['id']).subscribe(b => (this.person = b));
-    console.log(this.person);
+    this.app
+      .getSinglePerson(params['sv_number'])
+      .subscribe(b => (this.person = b));
+
+      console.log(this.person);
 
     this.getVaccinationForPeople();
   }

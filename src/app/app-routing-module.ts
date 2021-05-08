@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: "admin/:key", component: VaccinationFormComponent },
   { path: "login", component: LoginComponent},
   { path: "registrations", component: PeopleListComponent},
-  { path: "registrations/:id", component: PeopleDetailsComponent}
+  { path: "registrations/:sv_number", component: PeopleDetailsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

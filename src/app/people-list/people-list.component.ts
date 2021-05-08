@@ -19,4 +19,13 @@ export class PeopleListComponent implements OnInit {
     console.log(person);
     this.app.getAllPeople().subscribe(res => (this.people = res));
   }
+
+  changeStatus(svnumber, isVaccinated) {
+    console.log(svnumber);
+    console.log('geimpft: ' + isVaccinated);
+
+    if (isVaccinated == true) {
+      isVaccinated == false;
+    }
+  }
 }
