@@ -21,6 +21,7 @@ import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 import { PeopleListComponent } from './people-list/people-list.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
 import { PeopleListItemComponent } from './people-list-item/people-list-item.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { PeopleListItemComponent } from './people-list-item/people-list-item.com
     LoginComponent,
     PeopleListComponent,
     PeopleDetailsComponent,
-    PeopleListItemComponent
+    PeopleListItemComponent,
+    ProfilComponent
   ],
   bootstrap: [AppComponent],
   providers: [
