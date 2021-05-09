@@ -52,6 +52,13 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getSinglePersonbyID(id): Observable<People> {
+    return this.http
+      .get<Vaccination>(`${this.api}/registrations/${id}`)
+      .pipe(retry(3))
+      .pipe(catchError(this.errorHandler));
+  }
+
   create(vaccination: Vaccination): Observable<any> {
     return this.http
       .post(`${this.api}/vaccination`, vaccination)

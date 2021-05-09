@@ -22,6 +22,7 @@ import { PeopleListComponent } from './people-list/people-list.component';
 import { PeopleDetailsComponent } from './people-details/people-details.component';
 import { PeopleListItemComponent } from './people-list-item/people-list-item.component';
 import { ProfilComponent } from './profil/profil.component';
+import { RegisterForVaccinationFormComponent } from './register-for-vaccination-form/register-for-vaccination-form.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { ProfilComponent } from './profil/profil.component';
     PeopleListComponent,
     PeopleDetailsComponent,
     PeopleListItemComponent,
-    ProfilComponent
+    ProfilComponent,
+    RegisterForVaccinationFormComponent
   ],
   bootstrap: [AppComponent],
   providers: [
