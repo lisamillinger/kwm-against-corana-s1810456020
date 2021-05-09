@@ -1,22 +1,22 @@
-import { ActivatedRoute, Router } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormArray,
   Validators,
   FormControl
-} from "@angular/forms";
-import { VaccinationFactory } from "../shared/vaccination-factory";
-import { VaccinationStoreService } from "../shared/vaccination-store.service";
-import { Vaccination, Location } from "../shared/vaccination";
-import { VaccinationValidators } from "../shared/vaccination-validators";
-import { VaccinationFormErrorMessages } from "./vaccination-form-error-messages";
+} from '@angular/forms';
+import { VaccinationFactory } from '../shared/vaccination-factory';
+import { VaccinationStoreService } from '../shared/vaccination-store.service';
+import { Vaccination, Location } from '../shared/vaccination';
+import { VaccinationValidators } from '../shared/vaccination-validators';
+import { VaccinationFormErrorMessages } from './vaccination-form-error-messages';
 
 @Component({
-  selector: "app-vaccination-form",
-  templateUrl: "./vaccination-form.component.html",
-  styleUrls: ["./vaccination-form.component.css"]
+  selector: 'app-vaccination-form',
+  templateUrl: './vaccination-form.component.html',
+  styleUrls: ['./vaccination-form.component.css']
 })
 export class VaccinationFormComponent implements OnInit {
   vaccinationForm: FormGroup;
@@ -33,7 +33,7 @@ export class VaccinationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const key = this.route.snapshot.params["key"];
+    const key = this.route.snapshot.params['key'];
     if (key) {
       this.isUpdatingVaccination = true;
       this.app.getSingle(key).subscribe(vaccination => {
@@ -71,7 +71,7 @@ export class VaccinationFormComponent implements OnInit {
   }
 
   buildLocationsArray() {
-    console.log("ICH BUILDE EINE LCOATION");
+    console.log('ICH BUILDE EINE LCOATION');
     this.locations = this.fb.array([]);
 
     for (let location of this.vaccination.locations) {
@@ -88,9 +88,9 @@ export class VaccinationFormComponent implements OnInit {
   addLocationControl() {
     this.locations.push(
       this.fb.group({
-        post_code: this.vaccination["post_code"],
-        address: this.vaccination["address"],
-        city: this.vaccination["city"]
+        post_code: this.vaccination['post_code'],
+        address: this.vaccination['address'],
+        city: this.vaccination['city']
       })
     );
   }
@@ -111,19 +111,19 @@ export class VaccinationFormComponent implements OnInit {
       this.app
         .remove(this.vaccination.key)
         .subscribe(res =>
-          this.router.navigate(["../vaccinations"], { relativeTo: this.route })
+          this.router.navigate(['../vaccinations'], { relativeTo: this.route })
         );
 
       this.app.create(vaccination).subscribe(
         res => {
           this.vaccination = VaccinationFactory.empty();
           this.vaccinationForm.reset(VaccinationFactory.empty());
-          this.router.navigate(["../vaccinations"], {
+          this.router.navigate(['../vaccinations'], {
             relativeTo: this.route
           });
         },
         err => {
-          console.log("Fehler ist passiert", err);
+          console.log('Fehler ist passiert', err);
         }
       );
       //NEUE LOCATION ANLEGEN
@@ -134,19 +134,19 @@ export class VaccinationFormComponent implements OnInit {
         res => {
           this.vaccination = VaccinationFactory.empty();
           this.vaccinationForm.reset(VaccinationFactory.empty());
-          this.router.navigate(["../vaccinations"], {
+          this.router.navigate(['../vaccinations'], {
             relativeTo: this.route
           });
         },
         err => {
-          console.log("Fehler ist passiert", err);
+          console.log('Fehler ist passiert', err);
         }
       );
     }
   }
 
   updateErrorMessages() {
-    console.log("form invalid? " + this.vaccinationForm.invalid);
+    console.log('form invalid? ' + this.vaccinationForm.invalid);
 
     this.errors = {};
 

@@ -32,7 +32,10 @@ export class RegisterForVaccinationFormComponent implements OnInit {
 
   initRegistration() {}
 
-  buildVaccinations() {}
+  buildVaccinations() {
+    console.log('ICH BUILDE EINE Impfung');
+    this.vaccinations = this.fb.array([]);
+  }
 
   submitForm() {}
 }

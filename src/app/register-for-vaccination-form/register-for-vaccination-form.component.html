@@ -1,0 +1,23 @@
+<p>
+register-for-vaccination-form works!
+</p>
+<h1> Formular zum Registrieren für Impfungen </h1>
+ <input type="hidden" name="id">
+
+     <div formArrayName="vaccination">
+      <div class="fields" *ngFor="let control of vaccinations?.controls; index as
+i; last as l" [formGroupName]="i">
+
+        <input type="hidden" name="id">
+
+        <label for="cars">Choose a car:</label>
+<select name="cars" id="cars" form="carform">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+    </div>
+  </div>
+
