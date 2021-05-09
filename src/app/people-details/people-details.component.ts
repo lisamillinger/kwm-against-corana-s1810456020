@@ -25,8 +25,6 @@ export class PeopleDetailsComponent implements OnInit {
       .subscribe(b => (this.person = b));
 
       console.log(this.person);
-
-    this.getVaccinationForPeople();
   }
 
   getVaccinationForPeople() {

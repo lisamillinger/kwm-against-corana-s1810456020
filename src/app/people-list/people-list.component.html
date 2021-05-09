@@ -1,21 +1,18 @@
 <div class="list-group" *ngFor="let person of people">
-  <a >
-    <div class="list-group-item list-group-item-action flex-column align-items-start app-vaccination-list-item">
-      <h5 class="mb-1">{{ person.lastName }}, {{ person.firstName }} ({{person.sv_number}}) </h5>
+  <div class="list-group-item list-group-item-action flex-column align-items-start app-vaccination-list-item">
+    <h5 class="mb-1">{{ person.lastName }}, {{ person.firstName }} ({{person.sv_number}}) </h5>
 
-      <div class="description"> {{ person.birthday }} </div>
+    <div class="description"> {{ person.birthday }} </div>
 
-      Person geimpft
-      <span *ngIf="person.isVaccinated == false">
-       <input type="checkbox" [value]="person.sv_number" (change)="changeStatus(person.sv_number, person.isVaccinated)" />
+    Person geimpft
+    <span *ngIf="person.isVaccinated == false">
+       <input type="checkbox" [value]="person.sv_number" (change)="changeStatus(person.sv_number)" />
   
     </span>
-      <span *ngIf="person.isVaccinated == true">
-       <input type="checkbox" checked>
+    <span *ngIf="person.isVaccinated == true">
+       <input type="checkbox" [value]="person.sv_number" (change)="changeStatus(person.sv_number)" checked/>
     </span>
 
+  </div>
 
-
-    </div>
-  </a>
 </div>

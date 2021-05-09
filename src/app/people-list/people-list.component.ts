@@ -15,17 +15,12 @@ export class PeopleListComponent implements OnInit {
   constructor(private app: VaccinationStoreService) {}
 
   ngOnInit() {
-    let person = this.app.getAllPeople();
-    console.log(person);
     this.app.getAllPeople().subscribe(res => (this.people = res));
   }
 
-  changeStatus(svnumber, isVaccinated) {
+  changeStatus(svnumber) {
     console.log(svnumber);
-    console.log('geimpft: ' + isVaccinated);
 
-    if (isVaccinated == true) {
-      isVaccinated == false;
-    }
+    this.app.vaccinatePerson(svnumber).subscribe(res => (this.people = res));
   }
 }
