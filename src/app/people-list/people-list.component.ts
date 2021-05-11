@@ -22,6 +22,16 @@ export class PeopleListComponent implements OnInit {
   changeStatus(svnumber) {
     console.log(svnumber);
 
-    this.app.vaccinatePerson(svnumber).subscribe(res => (this.people = res));
+    for (let p of this.people) {
+      if (svnumber == p.sv_number) {
+        if (p.isVaccinated == false) {
+          p.isVaccinated = true;
+        } else {
+          p.isVaccinated = false;
+        }
+        this.app.vaccinatePerson(p).subscribe();
+        console.log(p);
+      }
+    }
   }
 }
