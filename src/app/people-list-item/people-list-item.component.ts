@@ -12,5 +12,7 @@ export class PeopleListItemComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.people);
+  }
 }

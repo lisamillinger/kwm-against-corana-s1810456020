@@ -11,6 +11,7 @@ import { VaccinationStoreService } from '../shared/vaccination-store.service';
 })
 export class PeopleListComponent implements OnInit {
   people: People[];
+  vaccination: Vaccination;
 
   constructor(private app: VaccinationStoreService) {}
 

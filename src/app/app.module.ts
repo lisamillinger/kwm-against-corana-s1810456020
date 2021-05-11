@@ -19,10 +19,8 @@ import { AuthenticationService } from "./shared/authentication.service";
 import { TokenInterceptorService } from "./shared/token-interceptor.service";
 import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 import { PeopleListComponent } from './people-list/people-list.component';
-import { PeopleDetailsComponent } from './people-details/people-details.component';
 import { PeopleListItemComponent } from './people-list-item/people-list-item.component';
 import { ProfilComponent } from './profil/profil.component';
-import { RegisterForVaccinationFormComponent } from './register-for-vaccination-form/register-for-vaccination-form.component';
 
 @NgModule({
   imports: [
@@ -43,10 +41,8 @@ import { RegisterForVaccinationFormComponent } from './register-for-vaccination-
     VaccinationFormErrorMessagesComponent,
     LoginComponent,
     PeopleListComponent,
-    PeopleDetailsComponent,
     PeopleListItemComponent,
     ProfilComponent,
-    RegisterForVaccinationFormComponent
   ],
   bootstrap: [AppComponent],
   providers: [
