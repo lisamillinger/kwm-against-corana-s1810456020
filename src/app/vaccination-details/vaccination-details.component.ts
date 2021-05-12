@@ -25,7 +25,7 @@ export class VaccinationDetailsComponent implements OnInit {
   ngOnInit() {
     const params = this.route.snapshot.params;
     this.app.getSingle(params['key']).subscribe(v => (this.vaccination = v));
-    this.getProfil(19);
+    this.getProfil(21);
   }
 
   removeVaccination() {
@@ -47,14 +47,13 @@ export class VaccinationDetailsComponent implements OnInit {
   }
 
   alreadyRegistred(sv: string): boolean {
-    for (let per of this.vaccination.people) {
-      console.log(per.sv_number);
-      console.log(sv);
-      if (per.sv_number == sv) {
-        return true;
-      } else {
-        //noch nicht angemeldet
+    for (let i = 0; i < this.vaccination.people.length; i++) {
+      if (this.vaccination.people[i].sv_number == sv) {
+        //person already registerd
         return false;
+      } else {
+        //person can still be registred
+        return true;
       }
     }
   }
@@ -62,11 +61,11 @@ export class VaccinationDetailsComponent implements OnInit {
   register(key: string) {
     console.log(key);
     let sv = this.person.sv_number;
-    let isRegistred = this.alreadyRegistred(sv);
-    console.log(isRegistred);
+    let registred = this.alreadyRegistred(sv);
+    console.log(registred);
 
-    if (this.alreadyRegistred(sv) == true) {
-      
+    if (this.alreadyRegistred(sv) == false) {
+      console.log('schon registred');
     } else {
       this.app.registerPerson(sv, this.vaccination).subscribe();
       console.log(this.vaccination);
@@ -76,7 +75,6 @@ export class VaccinationDetailsComponent implements OnInit {
   //current registred people
   countPeople(): number {
     let x = this.vaccination.people.length;
-    console.log(x);
 
     return x;
   }
