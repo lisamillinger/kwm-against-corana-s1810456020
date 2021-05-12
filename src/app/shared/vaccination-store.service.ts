@@ -24,12 +24,10 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
-  registerPerson(person, vaccination): Observable<any> {
+  registerPerson(sv_number: string, vaccination: Vaccination): Observable<any> {
     return this.http
       .put(
-        `${this.api}/registration/${person.sv_number}/${vaccination.key}`,
-        person
-      )
+        `${this.api}/vaccinations/${vaccination.key}/${sv_number}`, vaccination)
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
