@@ -24,9 +24,12 @@ export class VaccinationStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getVaccinationForPerson(): Observable<Vaccination> {
+  registerPerson(person, vaccination): Observable<any> {
     return this.http
-      .get(`${this.api}/registrations/{$id}/vaccination`)
+      .put(
+        `${this.api}/registration/${person.sv_number}/${vaccination.key}`,
+        person
+      )
       .pipe(retry(3))
       .pipe(catchError(this.errorHandler));
   }
