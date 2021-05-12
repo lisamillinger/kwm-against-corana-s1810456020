@@ -13,7 +13,7 @@
       </div>
       <div class="four wide column">
         <span *ngFor="let location of vaccination.locations;">
-         Anmeldungen: {{ vaccination.current_registrations }}
+         Aktuelle Anmeldungen: {{ countPeople() }}
         </span>
       </div>
 
@@ -32,7 +32,7 @@
     <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
       Zurück zur Impfübersicht
     </button>
-    <button type="button" class="btn btn-info" (click)="register()">
+    <button type="button" class="btn btn-info" [value]="vaccination.key" (click)="register(vaccination.key)">
       Für Impfung anmelden
     </button>
     <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"

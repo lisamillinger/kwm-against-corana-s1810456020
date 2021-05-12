@@ -9,6 +9,7 @@ import {VaccinationStoreService} from '../shared/vaccination-store.service';
 })
 export class VaccinationListComponent implements OnInit {
   vaccinations: Vaccination[];
+  people: People
 
   constructor(private app: VaccinationStoreService) {}
 

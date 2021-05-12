@@ -23,7 +23,6 @@ export class VaccinationDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.vaccination.people);
     const params = this.route.snapshot.params;
     this.app.getSingle(params['key']).subscribe(v => (this.vaccination = v));
     this.getProfil(19);
@@ -43,19 +42,42 @@ export class VaccinationDetailsComponent implements OnInit {
     return new Array(num);
   }
 
-  /*getParticipants() {
-    return this.vaccination.people.length;
-  }*/
-
   getProfil(id) {
     this.app.getSinglePersonbyID(id).subscribe(res => (this.person = res));
   }
 
-  register() {
-    console.log('hello');
-    console.log(this.person);
+  alreadyRegistred(sv: string): boolean {
+    for (let per of this.vaccination.people) {
+      console.log(per.sv_number);
+      console.log(sv);
+      if (per.sv_number == sv) {
+        return true;
+      } else {
+        //noch nicht angemeldet
+        return false;
+      }
+    }
+  }
+
+  register(key: string) {
+    console.log(key);
     let sv = this.person.sv_number;
-    this.app.registerPerson(sv, this.vaccination).subscribe();
-    console.log(this.vaccination);
+    let isRegistred = this.alreadyRegistred(sv);
+    console.log(isRegistred);
+
+    if (this.alreadyRegistred(sv) == true) {
+      
+    } else {
+      this.app.registerPerson(sv, this.vaccination).subscribe();
+      console.log(this.vaccination);
+    }
+  }
+
+  //current registred people
+  countPeople(): number {
+    let x = this.vaccination.people.length;
+    console.log(x);
+
+    return x;
   }
 }
