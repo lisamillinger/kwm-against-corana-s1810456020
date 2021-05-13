@@ -13,7 +13,8 @@ export class ProfilComponent implements OnInit {
   constructor(private app: VaccinationStoreService) {}
 
   ngOnInit() {
-    this.getProfil(21);
+    let id =  Number.parseInt(sessionStorage.getItem("userId"));
+    this.getProfil(id);
   }
 
   getProfil(id) {
