@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 
 interface Token {
   exp: number;
-  user: {
+  people: {
     id: string;
   };
 }
@@ -12,6 +12,7 @@ interface Token {
 @Injectable({
   providedIn: "root"
 })
+
 export class AuthenticationService {
   private api: string =
     "https://corana21.s1810456020.student.kwmhgb.at/api/auth";
@@ -27,11 +28,11 @@ export class AuthenticationService {
 
   public setLocalStorage(token: string) {
     console.log("storing stoken");
-
     const decodedToken = jwt_decode(token) as Token;
-    console.log(decodedToken.user.id);
+    console.log(decodedToken.people.id);
+
     sessionStorage.setItem("token", token);
-    sessionStorage.setItem("userId", decodedToken.user.id);
+    sessionStorage.setItem("userId", decodedToken.people.id);
   }
 
   public getCurrentUserId() {
