@@ -6,7 +6,7 @@
       Zurück zur Impfübersicht
     </button>
 
-  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-info" [value]="vaccination.key" (click)="register(vaccination.key)">
+  <button *ngIf="authService.isLoggedIn() && vaccination.isFull != true" type="button" class="btn btn-info" [value]="vaccination.key" (click)="register(vaccination.key)">
       Für Impfung anmelden
     </button>
   <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
@@ -48,9 +48,16 @@
           <span *ngFor="let location of vaccination.locations;">
          Aktutell angemeldete Personen: {{ countPeople() }}
         </span>
+          <span *ngIf="vaccination.isFull != true">
           <div class="alert alert-warning" role="alert">
             Noch {{ vaccination.current_registrations - countPeople() }} freie Plätze
           </div>
+          </span>
+            <span *ngIf="vaccination.isFull == true">
+          <div class="alert alert-danger" role="alert">
+            Keine Anmeldung mehr möglich
+          </div>
+          </span>
         </div>
 
 

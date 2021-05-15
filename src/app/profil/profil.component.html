@@ -1,9 +1,36 @@
-<p>
-  profil works!
-</p>
+<h1> {{ person.firstName }} {{person.lastName}} </h1>
 
-Mein Profil: <br>
-Name:
-{{ person.firstName }} {{person.lastName}} <br>
-Sozialversicherungsnummer: {{ person.sv_number }} <br>
-geimpft: {{ person.isVaccinated }}
+<div class="personaldata">
+<p>
+<span id="bold"> Sozialversicherungsnummer: </span> {{ person.sv_number }} <br>
+
+<span id="bold"> Geburtstag: </span> {{ person.birthday | date: 'longDate' }} <br>
+
+<span id="bold"> Geschlecht: </span> {{ person.gender }} <br>
+
+<span id="bold"> Adresse: </span> {{ person.address }} <br>
+
+<span id="bold"> Email Adresse: </span> {{ person.email }} <br>
+
+<span id="bold"> Telefonnummer: </span> {{ person.telephone_number }} <br>
+
+<span id="bold"> Impfung: </span>
+
+<span id="bold"> geimpft: </span> <span *ngIf="person.isVaccinated == true "> ja </span>
+<span *ngIf="person.isVaccinated == false "> nein </span></p>
+
+
+</div>
+
+
+
+
+<footer class="flex-col">
+  <div class="social-links-container bg-light">
+    <div class="wrapper flex-col center">
+      <div class="copyright-container">
+        <p> Copyright &copy; 2021. Lisa Millinger. KWM.</p>
+      </div>
+    </div>
+  </div>
+</footer>
