@@ -9,11 +9,11 @@
   <button *ngIf="authService.isLoggedIn() && vaccination.isFull != true" type="button" class="btn btn-info" [value]="vaccination.key" (click)="register(vaccination.key)">
       Für Impfung anmelden
     </button>
-  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
+  <button *ngIf="authService.isAdmin()" type="button" class="btn btn-danger"
       (click)="removeVaccination()">
       Impfung löschen
 </button>
-  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-primary"
+  <button *ngIf="authService.isAdmin()" type="button" class="btn btn-primary"
       [routerLink]="['../../admin', vaccination?.key]">
       Impfung bearbeiten
 </button>

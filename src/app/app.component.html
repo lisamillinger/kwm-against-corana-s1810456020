@@ -10,10 +10,10 @@
   </li>
 
   <li class="nav-item">
-    <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
+    <a *ngIf="isAdmin()" routerLink="admin" routerLinkActive="active" class="nav-link">Administration</a>
   </li>
   <li class="nav-item">
-    <a *ngIf="isLoggedIn()" routerLink="registrations" routerLinkActive="active" class="nav-link">Aktuelle
+    <a *ngIf="isAdmin()" routerLink="registrations" routerLinkActive="active" class="nav-link">Aktuelle
       Registrierungen</a>
   </li>
   <li class="nav-item">
