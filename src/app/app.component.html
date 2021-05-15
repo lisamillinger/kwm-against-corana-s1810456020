@@ -6,7 +6,7 @@
     <a routerLink="vaccinations" routerLinkActive="active" class="nav-link">Impfungen</a>
   </li>
   <li class="nav-item">
-    <a routerLink="profil" routerLinkActive="active" class="nav-link">Profil</a>
+    <a *ngIf="isLoggedIn()" routerLink="profil" routerLinkActive="active" class="nav-link">Profil</a>
   </li>
 
   <li class="nav-item">

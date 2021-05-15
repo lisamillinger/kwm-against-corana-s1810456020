@@ -1,6 +1,20 @@
-<div class="list-group">
+<h1> Ansicht aller Impfungen</h1>
+
+<div class="container">
+  <div class="row">
   <a *ngFor="let vaccination of vaccinations"
-    class="list-group-item list-group-item-action flex-column align-items-start app-vaccination-list-item"
+    class="app-vaccination-list-item"
     [vaccination]="vaccination" [routerLink]="vaccination.key">
   </a>
+  </div>
 </div>
+
+<footer class="flex-col">
+  <div class="social-links-container bg-light">
+    <div class="wrapper flex-col center">
+      <div class="copyright-container">
+        <p> Copyright &copy; 2021. Lisa Millinger. KWM.</p>
+      </div>
+    </div>
+  </div>
+</footer>

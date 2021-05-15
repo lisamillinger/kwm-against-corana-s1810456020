@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 
@@ -20,6 +20,11 @@ import { TokenInterceptorService } from "./shared/token-interceptor.service";
 import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 import { PeopleListComponent } from './people-list/people-list.component';
 import { ProfilComponent } from './profil/profil.component';
+import { registerLocaleData } from "@angular/common";
+
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe);
 
 @NgModule({
   imports: [
@@ -52,7 +57,8 @@ import { ProfilComponent } from './profil/profil.component';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    {provide: LOCALE_ID, useValue: 'de'}
   ]
 })
 export class AppModule {}

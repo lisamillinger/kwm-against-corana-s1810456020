@@ -1,3 +1,23 @@
 <h1>Willkommen zur KWM gegen Corana - Impfanmeldung </h1>
 
-<img src="images/undraw_doctor_kw5l.png"/>
+<p class="infotext"> Um sich für eine Impfung anzumelden, kann man sich hier einloggen
+  <button type="button" [routerLink]="'/login'" class="btn btn-info">
+      Zum Login
+    </button>
+</p>
+
+<p class="infotext"> Aktuelle Impfungen finden sich hier
+  <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
+      Zu den Impfungen
+    </button>
+</p>
+
+<footer class="flex-col">
+  <div class="social-links-container bg-light">
+    <div class="wrapper flex-col center">
+      <div class="copyright-container">
+        <p> Copyright &copy; 2021. Lisa Millinger. KWM.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,9 +1,11 @@
-<div class="d-flex w-100 justify-content-between">
 
-  <h5 class="mb-1">{{ vaccination.key }}</h5>
-  <div class="description"> {{ vaccination.information }} </div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ vaccination.key }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ vaccination.information }}</h6>
+    <span *ngFor="let location of vaccination.locations;">
+    <p class="card-text">{{location.address}}</p>
+     </span>
+  </div>
+</div>
 
-
-  <span *ngFor="let location of vaccination.locations;">
-    <small>{{location.address}}</small>
-</span>

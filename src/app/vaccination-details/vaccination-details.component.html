@@ -1,49 +1,81 @@
-<h1 class="ui header">{{ vaccination.key }}</h1>
-<h3 class="ui header">{{ vaccination.information }}</h3>
+<h1>Impfung {{ vaccination.key }}</h1>
+<h3>{{ vaccination.information }}</h3>
+
+<div class="buttons">
+  <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
+      Zurück zur Impfübersicht
+    </button>
+
+  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-info" [value]="vaccination.key" (click)="register(vaccination.key)">
+      Für Impfung anmelden
+    </button>
+  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
+      (click)="removeVaccination()">
+      Impfung löschen
+</button>
+  <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-primary"
+      [routerLink]="['../../admin', vaccination?.key]">
+      Impfung bearbeiten
+</button>
+</div>
+
 <div class="ui grid" *ngIf="vaccination">
 
   <div class="twelve wide column">
 
-    <div class="ui divider"></div>
-    <div class="ui grid">
-      <div class="four wide column">
-        <span *ngFor="let location of vaccination.locations;">
-          {{ location.address }} {{ location.post_code }} {{location.city}}
-        </span>
-      </div>
-      <div class="four wide column">
-        <span *ngFor="let location of vaccination.locations;">
-         Aktuelle Anmeldungen: {{ countPeople() }}
-        </span>
-      </div>
+    <hr>
 
-      <div *ngIf="authService.isLoggedIn()">
-        <span *ngFor="let people of vaccination.people;">
-         Angemeldete Personen: <br>
-         {{ people.firstName }} <br>
-         {{ people.lastName}} <br>
-         {{people.isVaccinated}} <br>
+    <div class="containter">
+
+      <div class="row">
+        <div class="col-sm">
+          <h3>Ort</h3>
+          <span *ngFor="let location of vaccination.locations;">
+          {{ location.address }},  <br>
+          {{ location.post_code }} {{location.city}}
+        </span>
+        </div>
+
+        <div class="col-sm">
+          <h3>Datum</h3>
+          <span *ngFor="let location of vaccination.locations;">
+          {{ vaccination.date | date: 'longDate' }}
+        </span>
+        </div>
+
+        <div class="col-sm">
+          <h3>Anmeldungen</h3>
+          <span *ngFor="let location of vaccination.locations;">
+         Aktutell angemeldete Personen: {{ countPeople() }}
+        </span>
+          <div class="alert alert-warning" role="alert">
+            Noch {{ vaccination.current_registrations - countPeople() }} freie Plätze
+          </div>
+        </div>
+
+
+        <div *ngIf="authService.isLoggedIn()" class="col-sm">
+          <h3>Angemeldete Personen</h3>
+          <span *ngFor="let people of vaccination.people;">
+           
+         {{ people.firstName }} {{ people.lastName}} |  
+         <span *ngIf="people.isVaccinated != true"> noch nicht geimpft </span>
+        <span *ngIf="people.isVaccinated == true"> geimpft </span>
+         <br>
+
           </span>
+        </div>
       </div>
-
-
     </div>
-
-    <button type="button" [routerLink]="'/vaccinations'" class="btn btn-info">
-      Zurück zur Impfübersicht
-    </button>
-    <button type="button" class="btn btn-info" [value]="vaccination.key" (click)="register(vaccination.key)">
-      Für Impfung anmelden
-    </button>
-    <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-danger"
-      (click)="removeVaccination()">
-      Impfung löschen
-</button>
-    <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-primary"
-      [routerLink]="['../../admin', vaccination?.key]">
-      Impfung bearbeiten
-</button>
-
-
   </div>
-</div>
+
+
+  <footer class="flex-col">
+    <div class="social-links-container bg-light">
+      <div class="wrapper flex-col center">
+        <div class="copyright-container">
+          <p> Copyright &copy; 2021. Lisa Millinger. KWM.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
