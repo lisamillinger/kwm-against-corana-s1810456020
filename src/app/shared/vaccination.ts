@@ -9,7 +9,7 @@ export class Vaccination {
     public key: string,
     public information: string,
     public date: Date,
-    public max_participants: number,
+    public max_registrations: number,
     public current_registrations: number,
     public isFull: boolean,
     public locations?: Location[],

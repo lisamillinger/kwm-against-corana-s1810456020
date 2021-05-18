@@ -57,10 +57,7 @@ export class VaccinationFormComponent implements OnInit {
       ],
       date: [this.vaccination.date],
       information: [this.vaccination.information],
-      max_participants: [
-        this.vaccination.max_participants,
-        [Validators.min(1), Validators.max(100)]
-      ],
+      max_registrations: [this.vaccination.max_registrations],
       isFull: [this.vaccination.isFull],
       locations: this.locations
     });

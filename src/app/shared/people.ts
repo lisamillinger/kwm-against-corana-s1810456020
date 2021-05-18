@@ -10,6 +10,7 @@ export class People {
     public email: string,
     public password: string,
     public telephone_number: number,
+    public isRegistred: boolean,
     public isVaccinated: boolean,
     public isAdmin: boolean
   ) {}

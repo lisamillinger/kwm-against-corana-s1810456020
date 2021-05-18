@@ -16,6 +16,7 @@ export class PeopleFactory {
       0,
       false,
       false,
+      false,
     )
   }
 
@@ -33,6 +34,7 @@ export class PeopleFactory {
       rawPerson.email,
       rawPerson.password,
       rawPerson.telephone_number,
+      rawPerson.isRegistred,
       rawPerson.isVaccinated,
       rawPerson.isAdmin
     );

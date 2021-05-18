@@ -23,6 +23,7 @@ export class VaccinationFactory {
           email: "",
           password: "",
           telephone_number: 0,
+          isRegistred: false,
           isVaccinated: false,
           isAdmin: false
         }

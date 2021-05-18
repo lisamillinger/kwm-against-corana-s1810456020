@@ -61,10 +61,20 @@ export class VaccinationDetailsComponent implements OnInit {
 
   register(key: string) {
     console.log(key);
+    console.log(this.person.isRegistred);
     let sv = this.person.sv_number;
 
-    this.app.registerPerson(sv, this.vaccination).subscribe();
-    console.log(this.vaccination);
+    if (
+      this.vaccination.current_registrations ==
+        this.vaccination.max_registrations ||
+      this.person.isRegistred == true
+    ) {
+      alert('Keine Anmeldung mehr möglich');
+    } else {
+      this.app.registerPerson(sv, this.vaccination).subscribe();
+      console.log(this.vaccination);
+      alert('Sie wurden zur Impfung ' + this.vaccination.key + ' angemeldet');
+    }
   }
 
   //current registred people

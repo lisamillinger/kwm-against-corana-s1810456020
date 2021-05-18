@@ -1,4 +1,5 @@
 <div class="list-group" *ngFor="let person of people">
+  <span *ngIf="person.isRegistred == true">
   <div class="list-group-item list-group-item-action flex-column align-items-start app-vaccination-list-item">
     <h5 class="mb-1">{{ person.lastName }}, {{ person.firstName }} ({{person.sv_number}}) </h5>
 
@@ -11,10 +12,11 @@
        <input type="checkbox" [value]="person.sv_number" (change)="changeStatus(person.sv_number)" />
   
     </span>
-    <span *ngIf="person.isVaccinated == true">
+  <span *ngIf="person.isVaccinated == true">
        <input type="checkbox" [value]="person.sv_number" (change)="changeStatus(person.sv_number)" checked/>
     </span>
-  </div>
+</div>
+</span>
 </div>
 
 <footer class="flex-col">
@@ -24,5 +26,6 @@
         <p> Copyright &copy; 2021. Lisa Millinger. KWM.</p>
       </div>
     </div>
+
   </div>
 </footer>

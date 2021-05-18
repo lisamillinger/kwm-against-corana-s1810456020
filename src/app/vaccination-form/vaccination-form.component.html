@@ -1,4 +1,3 @@
-
 <h1>Formular zum Anlegen von Impfungen </h1>
 <form [formGroup]="vaccinationForm" (ngSubmit)="submitForm()">
 
@@ -23,8 +22,8 @@
 
   <div class="form-group">
     <label for="key">Maximale Teilnehmer*innen</label>
-    <input formControlName="max_participants" class="form-control" type="number">
-    <small *ngIf="errors.max_participants" class="form-text text-muted">{{errors.max_participants}}</small>
+    <input formControlName="max_registrations" class="form-control" type="number">
+    <small *ngIf="errors.max_registrations" class="form-text text-muted">{{errors.max_registrations}}</small>
   </div>
 
   <div class="form-group">

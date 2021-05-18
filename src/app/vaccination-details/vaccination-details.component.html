@@ -46,11 +46,11 @@
         <div class="col-sm">
           <h3>Anmeldungen</h3>
           <span *ngFor="let location of vaccination.locations;">
-         Aktutell angemeldete Personen: {{ countPeople() }}
+         Aktutell angemeldete Personen: {{ vaccination.current_registrations }}
         </span>
           <span *ngIf="vaccination.isFull != true">
           <div class="alert alert-warning" role="alert">
-            Noch {{ vaccination.current_registrations - countPeople() }} freie Plätze
+            Noch {{ vaccination.max_registrations - vaccination.current_registrations }} freie Plätze
           </div>
           </span>
             <span *ngIf="vaccination.isFull == true">
