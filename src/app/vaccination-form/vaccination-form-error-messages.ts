@@ -22,17 +22,6 @@ export const VaccinationFormErrorMessages = [
     'required',
     'Es muss eine maximale Registrierungsanzahl für die Impfung angegeben werden'
   ),
-  new ErrorMessage(
-    'key',
-    'minlength',
-    'Die Abkürzung muss mindestens 5 Zeichen enthalten'
-  ),
-  new ErrorMessage('Date', 'required', 'Es muss ein Datum angegeben werden'),
-  new ErrorMessage(
-    'key',
-    'maxlength',
-    'Die Abkürzung darf höchstens 10 Zeichen enthalten'
-  ),
 
   new ErrorMessage(
     'address',

@@ -43,25 +43,23 @@ i; last as l" [formGroupName]="i">
         <div class="form-group">
           <label for="address" label class="form-check-label">Adresse</label>
           <input formControlName="address" class="form-control">
-       
+          <small *ngIf="errors.address" class="form-text text-muted">{{errors.address}}</small>
         </div>
 
         <div class="form-group">
           <label for="post_code" label class="form-check-label">Postleitzahl</label>
           <input formControlName="post_code" class="form-control">
-        
+          <small *ngIf="errors.post_code" class="form-text text-muted">{{errors.post_code}}</small>
+
         </div>
 
 
         <div class="form-group">
           <label for="city" label class="form-check-label">Stadt</label>
           <input formControlName="city" class="form-control">
-      
+          <small *ngIf="errors.city" class="form-text text-muted">{{errors.city}}</small>
         </div>
-
       </div>
-      <small *ngIf="errors.locations" class="form-text text-muted">{{ errors.locations
-      }} </small>
     </div>
   </div>
 
