@@ -12,6 +12,11 @@ export const VaccinationFormErrorMessages = [
     'required',
     'Eine Abkürzung für die Impfung muss angegeben werden'
   ),
+   new ErrorMessage(
+    'key',
+    'unique',
+    'Die Abkürzung muss einzigartig sein'
+  ),
   new ErrorMessage(
     'date',
     'required',
