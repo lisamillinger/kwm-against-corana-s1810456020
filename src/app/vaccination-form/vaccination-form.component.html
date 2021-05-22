@@ -21,7 +21,7 @@
   </div>
 
   <div class="form-group">
-    <label for="key">Maximale Teilnehmer*innen</label>
+    <label for="max_registrations">Maximale Teilnehmer*innen</label>
     <input formControlName="max_registrations" class="form-control" type="number">
     <small *ngIf="errors.max_registrations" class="form-text text-muted">{{errors.max_registrations}}</small>
   </div>
@@ -40,21 +40,23 @@ i; last as l" [formGroupName]="i">
 
         <input type="hidden" name="id">
 
-
         <div class="form-group">
           <label for="address" label class="form-check-label">Adresse</label>
           <input formControlName="address" class="form-control">
+       
         </div>
 
         <div class="form-group">
           <label for="post_code" label class="form-check-label">Postleitzahl</label>
           <input formControlName="post_code" class="form-control">
+        
         </div>
 
 
         <div class="form-group">
           <label for="city" label class="form-check-label">Stadt</label>
           <input formControlName="city" class="form-control">
+      
         </div>
 
       </div>

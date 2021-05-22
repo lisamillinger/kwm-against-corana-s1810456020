@@ -1,27 +1,27 @@
-import { Vaccination } from "./vaccination";
+import { Vaccination } from './vaccination';
 
 export class VaccinationFactory {
   static empty(): Vaccination {
     return new Vaccination(
       null,
-      "",
-      "",
+      '',
+      '',
       new Date(),
       0,
       0,
       false,
-      [{ id: 0, post_code: 0, address: "", city: "" }],
+      [{ id: 0, post_code: 0, address: '', city: '' }],
       [
         {
           id: 0,
-          firstName: "",
-          lastName: "",
+          firstName: '',
+          lastName: '',
           birthday: new Date(),
-          gender: "",
-          sv_number: "",
-          address: "",
-          email: "",
-          password: "",
+          gender: '',
+          sv_number: '',
+          address: '',
+          email: '',
+          password: '',
           telephone_number: 0,
           isRegistred: false,
           isVaccinated: false,
@@ -36,10 +36,10 @@ export class VaccinationFactory {
       rawVaccination.id,
       rawVaccination.key,
       rawVaccination.information,
-      typeof rawVaccination.date === "string"
+      typeof rawVaccination.date === 'string'
         ? new Date(rawVaccination.date)
         : rawVaccination.date,
-      rawVaccination.max_participants,
+      rawVaccination.max_registrations,
       rawVaccination.current_registrations,
       rawVaccination.isFull,
       rawVaccination.locations,

@@ -55,9 +55,12 @@ export class VaccinationFormComponent implements OnInit {
           ? null
           : VaccinationValidators.keyExists(this.app)
       ],
-      date: [this.vaccination.date],
+      date: [this.vaccination.date, Validators.required],
       information: [this.vaccination.information],
-      max_registrations: [this.vaccination.max_registrations],
+      max_registrations: [
+        this.vaccination.max_registrations,
+        Validators.required
+      ],
       isFull: [this.vaccination.isFull],
       locations: this.locations
     });
@@ -73,7 +76,7 @@ export class VaccinationFormComponent implements OnInit {
 
     for (let location of this.vaccination.locations) {
       let fg = this.fb.group({
-        post_code: new FormControl(location.post_code),
+        post_code: new FormControl(location.post_code, [Validators.required]),
         address: new FormControl(location.address, [Validators.required]),
         city: new FormControl(location.city, [Validators.required])
       });
@@ -97,6 +100,7 @@ export class VaccinationFormComponent implements OnInit {
       this.vaccinationForm.value
     );
 
+    console.log(vaccination.max_registrations);
     console.log(vaccination.locations);
 
     vaccination.locations = this.vaccinationForm.value.locations;

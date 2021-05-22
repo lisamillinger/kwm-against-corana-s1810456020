@@ -7,6 +7,14 @@ body {
   font-family: "Source Sans Pro", sans-serif;
   min-height: 100vh;
 }
+
+h1 {
+  margin: 1em;
+}
+
+.btn-info {
+  margin-bottom: 6em;
+}
  
 a {
   text-decoration: none;
