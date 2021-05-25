@@ -53,7 +53,7 @@
             Noch {{ vaccination.max_registrations - vaccination.current_registrations }} freie Plätze
           </div>
           </span>
-            <span *ngIf="vaccination.isFull == true">
+          <span *ngIf="vaccination.isFull == true">
           <div class="alert alert-danger" role="alert">
             Keine Anmeldung mehr möglich
           </div>
@@ -64,11 +64,11 @@
         <div *ngIf="authService.isLoggedIn()" class="col-sm">
           <h3>Angemeldete Personen</h3>
           <span *ngFor="let people of vaccination.people;">
-           
+
          {{ people.firstName }} {{ people.lastName}} |  
          <span *ngIf="people.isVaccinated != true"> noch nicht geimpft </span>
-        <span *ngIf="people.isVaccinated == true"> geimpft </span>
-         <br>
+          <span *ngIf="people.isVaccinated == true"> geimpft </span>
+          <br>
 
           </span>
         </div>

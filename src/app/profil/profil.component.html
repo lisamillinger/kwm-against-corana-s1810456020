@@ -1,23 +1,22 @@
 <h1> {{ person.firstName }} {{person.lastName}} </h1>
 
 <div class="personaldata">
-<p>
-<span id="bold"> Sozialversicherungsnummer: </span> {{ person.sv_number }} <br>
+  <p>
+    <span id="bold"> Sozialversicherungsnummer: </span> {{ person.sv_number }} <br>
 
-<span id="bold"> Geburtstag: </span> {{ person.birthday | date: 'longDate' }} <br>
+    <span id="bold"> Geburtstag: </span> {{ person.birthday | date: 'longDate' }} <br>
 
-<span id="bold"> Geschlecht: </span> {{ person.gender }} <br>
+    <span id="bold"> Geschlecht: </span> {{ person.gender }} <br>
 
-<span id="bold"> Adresse: </span> {{ person.address }} <br>
+    <span id="bold"> Adresse: </span> {{ person.address }} <br>
 
-<span id="bold"> Email Adresse: </span> {{ person.email }} <br>
+    <span id="bold"> E-Mail: </span> {{ person.email }} <br>
 
-<span id="bold"> Telefonnummer: </span> {{ person.telephone_number }} <br>
+    <span id="bold"> Telefonnummer: </span> {{ person.telephone_number }} <br>
 
-<span id="bold"> Impfung: </span>
-
-<span id="bold"> geimpft: </span> <span *ngIf="person.isVaccinated == true "> ja </span>
-<span *ngIf="person.isVaccinated == false "> nein </span></p>
+    <span id="bold"> Ist geimpft: </span> <span *ngIf="person.isVaccinated == true "> Ja </span>
+    <span *ngIf="person.isVaccinated == false "> Nein </span>
+  </p>
 
 
 </div>
